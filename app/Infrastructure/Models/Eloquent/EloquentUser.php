@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class EloquentUser extends Model
 {
-    // Definisi model Eloquent
+    protected $table = 'users';
+    protected $fillable = ['username', 'password'];
+
+  
+
+    public static function rules()
+    {
+        return [
+            'username' => 'required|unique:users|max:255',
+            'password' => 'required|min:6',
+        ];
+    }
 }

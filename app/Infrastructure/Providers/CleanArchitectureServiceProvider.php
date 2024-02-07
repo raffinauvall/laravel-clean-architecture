@@ -10,6 +10,6 @@ class CleanArchitectureServiceProvider extends ServiceProvider
     {
         // Registrasi dependency atau layanan di sini
         // Contoh:
-        // $this->app->bind('App\Infrastructure\Repositories\UserRepository', 'App\Infrastructure\Repositories\EloquentUserRepository');
+        $this->app->bind('App\Infrastructure\Repositories\UserRepository', 'App\Infrastructure\Repositories\EloquentUserRepository');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\UseCases\Create;
+namespace App\Application\Usecases\Create;
 
 use App\Domain\Entities\User;
 
-interface CreateUserUseCase
+interface CreateUserUsecase
 {
     public function execute(array $userData): User;
 }

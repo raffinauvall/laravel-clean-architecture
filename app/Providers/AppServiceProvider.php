@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Application\Usecases\Create\CreateUserUsecase;
+use App\Application\Usecases\Create\Interactors\CreateUserInteractor;
+use App\Domain\Repositories\EloquentUserRepository;
+use App\Domain\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(CreateUserUsecase::class, CreateUserInteractor::class);
+        $this->app->bind(UserRepository::class, EloquentUserRepository::class);
     }
 
     /**
