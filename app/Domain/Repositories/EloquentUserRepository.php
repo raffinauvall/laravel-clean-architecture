@@ -5,6 +5,7 @@ namespace App\Domain\Repositories;
 use App\Domain\Entities\User;
 use App\Domain\Repositories\UserRepository as UserRepositoryInterface;
 use App\Infrastructure\Models\Eloquent\EloquentUser;
+use Illuminate\Database\Eloquent\Collection;
 
 class EloquentUserRepository implements UserRepositoryInterface
 {
@@ -16,7 +17,21 @@ class EloquentUserRepository implements UserRepositoryInterface
 
     public function findById(int $userId): ?User
     {
-        return EloquentUser::find($userId);
+        $eloquentUser = EloquentUser::find($userId);
+        return $eloquentUser ? new User($eloquentUser->toArray()) : null;
+    }
+
+    public function getAll(): Collection
+    {
+        $eloquentUsers = EloquentUser::all();
+        $users = new Collection();
+
+        foreach ($eloquentUsers as $eloquentUser) {
+            $user = new User($eloquentUser->toArray());
+            $users->push($user);
+        }
+
+        return $users;
     }
 
     public function findByUsername(string $userUsername): ?User

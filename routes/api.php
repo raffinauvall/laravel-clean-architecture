@@ -15,10 +15,15 @@ use App\Infrastructure\Http\Controllers\Api\UserController;
 |
 */
 
+
+// Create User Url
 Route::post('/users', [UserController::class, 'store']);
 
-// Read User
-// Route::get('/users/{id}', [UserController::class, 'show']);
+// Read All User Url
+Route::get('/users', [UserController::class, 'showAllUser']);
+
+// Read User Url by Id
+Route::get('/users/{id}', [UserController::class, 'showUserById']);
 
 // // Update User
 // Route::put('/users/{id}', [UserController::class, 'update']);
