@@ -10,7 +10,6 @@ interface UserRepository
     public function save(User $user): User;
     public function findById(int $userId): ?User;
     public function getAll(): Collection; // Ubah tipe kembalian menjadi Illuminate\Support\Collection
-    public function findByUsername(string $userUsername): ?User;
-    public function update(User $user): User;
-    public function delete(User $user): void;
+    public function update(int $userId, array $userData): ?User;
+    public function delete(int $userId): void;
 }

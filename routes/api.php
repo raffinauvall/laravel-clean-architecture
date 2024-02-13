@@ -25,8 +25,8 @@ Route::get('/users', [UserController::class, 'showAllUser']);
 // Read User Url by Id
 Route::get('/users/{id}', [UserController::class, 'showUserById']);
 
-// // Update User
-// Route::put('/users/{id}', [UserController::class, 'update']);
+// Update User by Id
+Route::patch('/users/{id}', [UserController::class, 'update']);
 
-// // Delete User
-// Route::delete('/users/{id}', [UserController::class, 'destroy']);
+// Delete User by Id
+Route::delete('/users/{id}', [UserController::class, 'destroy']);

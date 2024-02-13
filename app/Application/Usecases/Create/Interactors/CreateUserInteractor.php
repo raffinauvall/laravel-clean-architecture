@@ -16,22 +16,21 @@ class CreateUserInteractor implements CreateUserUsecase
     }
 
     public function execute(array $userData): User
-    {
-        // Validasi data
-        if (!isset($userData['username']) || !isset($userData['password'])) {
-            throw new \InvalidArgumentException("Username and password are required.");
-        }
-    
-        // Contoh: Membuat instansi User dari data yang diberikan
-        $user = new User();
-        $user->username = $userData['username']; // Ubah 'name' menjadi 'username' jika sesuai
-        $user->password = $userData['password']; // Ubah 'email' menjadi 'password' jika sesuai
-    
-        // Simpan pengguna ke penyimpanan data (database)
-        $savedUser = $this->userRepository->save($user);
-    
-        return $savedUser;
+{
+    // Validasi data
+    if (!isset($userData['username']) || !isset($userData['password'])) {
+        throw new \InvalidArgumentException("Username and password are required.");
     }
-    
+
+    // Contoh: Membuat instansi User dari data yang diberikan
+    $user = new User();
+    $user->username = $userData['username']; // Ubah 'name' menjadi 'username' jika sesuai
+    $user->password = $userData['password']; // Ubah 'email' menjadi 'password' jika sesuai
+
+    // Simpan pengguna ke penyimpanan data (database)
+    $savedUser = $this->userRepository->save($user);
+
+    return $savedUser; // Pastikan mengembalikan instans User, bukan ID
 }
 
+}

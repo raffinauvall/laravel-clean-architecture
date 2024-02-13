@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\UseCases\Read\Interactors;
+namespace App\Application\Usecases\Read\Interactors;
 
 use App\Application\Usecases\Read\ReadUserUsecase;
 use App\Domain\Entities\User;

@@ -12,7 +12,7 @@ class EloquentUserRepository implements UserRepositoryInterface
     public function save(User $user): User
     {
         $eloquentUser = EloquentUser::create($user->toArray());
-        return new User($eloquentUser->toArray()); // Membuat instance dari entitas domain
+        return new User($eloquentUser->toArray());
     }
 
     public function findById(int $userId): ?User
@@ -34,20 +34,26 @@ class EloquentUserRepository implements UserRepositoryInterface
         return $users;
     }
 
-    public function findByUsername(string $userUsername): ?User
+    public function update(int $userId, array $userData): ?User
     {
-        return EloquentUser::where('username', $userUsername)->first();
+        // Cari pengguna berdasarkan ID
+        $existingUser = EloquentUser::find($userId);
+
+        // Jika pengguna tidak ditemukan, kembalikan null
+        if (!$existingUser) {
+            return null;
+        }
+
+        // Perbarui data pengguna
+        $existingUser->update($userData);
+
+        // Kembalikan pengguna yang diperbarui
+        return new User($existingUser->fresh()->toArray());
     }
 
-    public function update(User $user): User
-    {
-        $eloquentUser = EloquentUser::find($user->id);
-        $eloquentUser->update($user->toArray());
-        return $eloquentUser;
-    }
 
-    public function delete(User $user): void
+    public function delete(int $userId): void
     {
-        EloquentUser::destroy($user->id);
+        EloquentUser::destroy($userId);
     }
 }
