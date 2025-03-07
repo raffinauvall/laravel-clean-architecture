@@ -37,19 +37,19 @@ class UserController extends \App\Http\Controllers\Controller
             // Validasi permintaan
             $request->validate([
                 'username' => 'required|unique:users|max:255',
-                'password' => 'required|min:8',
+                'phone_number' => 'required',
+                'address' => 'required'
             ]);
 
             $username = $request->input('username');
-            $password = $request->input('password');
+            $phone_number = $request->input('phone_number');
+            $address = $request->input('address');
 
-            // Hash Password Variable
-            $hashPassword = Hash::make($password);
 
-            // Panggil CreateUserUseCase untuk membuat pengguna baru
             $userData = [
                 'username' => $username,
-                'password' => $hashPassword,
+                'phone_number' => $phone_number,
+                'address' => $address
             ];
             $createUser = $this->createUserUsecase->execute($userData);
 
@@ -82,8 +82,8 @@ class UserController extends \App\Http\Controllers\Controller
             return [
                 'id' => $user->id,
                 'username' => $user->username,
-                'password' => $user->password
-                // Tambahkan atribut lain yang perlu Anda tampilkan
+                'phone_number' => $user->phone_number,
+                'address' => $user->address
             ];
         });
 
@@ -107,18 +107,20 @@ class UserController extends \App\Http\Controllers\Controller
         try {
             // Validasi permintaan
             $request->validate([
-                'username' => 'required|max:255',
-                'password' => 'required|min:8',
+                'username' => 'required|unique:users|max:255',
+                'phone_number' => 'required',
+                'address' => 'required'
             ]);
 
             $username = $request->input('username');
-            $password = $request->input('password');
-
+            $phone_number = $request->input('phone_number');
+            $address = $request->input('address');
 
             // Panggil UpdateUserUseCase untuk memperbarui pengguna
             $userData = [
                 'username' => $username,
-                'password' => Hash::make($password),
+                'phone_number' => $phone_number,
+                'address' => $address
             ];
             $updatedUser = $this->updateUserUsecase->execute($id, $userData);
 

@@ -17,21 +17,17 @@ class UpdateUserInteractor implements UpdateUserUsecase
 
     public function execute(int $userId, array $userData): ?User
     {
-        // Periksa apakah pengguna dengan ID yang diberikan ada
         $existingUser = $this->userRepository->findById($userId);
         if (!$existingUser) {
-            return null; // Mengembalikan null jika pengguna tidak ditemukan
+            return null;
         }
 
-        // Validasi data yang diterima sebelum pembaruan
+
         if (!isset($userData['username']) || !isset($userData['password'])) {
             throw new \InvalidArgumentException('Username dan password wajib diisi.');
         }
-
-        // Update data pengguna dengan data baru
         $this->userRepository->update($userId, $userData);
 
-        // Ambil data pengguna yang diperbarui
         $updatedUser = $this->userRepository->findById($userId);
 
         return $updatedUser;
