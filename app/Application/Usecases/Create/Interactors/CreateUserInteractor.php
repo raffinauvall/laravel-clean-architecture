@@ -17,13 +17,13 @@ class CreateUserInteractor implements CreateUserUsecase
 
     public function execute(array $userData): User
 {
-    if (!isset($userData['username']) || !isset($userData['password'])) {
-        throw new \InvalidArgumentException("Username and password are required.");
+    if (!isset($userData['username']) || !isset($userData['phone_number']) || !isset($userData['address'])) {
+        throw new \InvalidArgumentException("All data are required");
     }
 
     $user = new User();
     $user->username = $userData['username']; 
-    $user->no_telp = $userData['phone_number'];
+    $user->phone_number = $userData['phone_number'];
     $user->address = $userData['address'];
 
     $savedUser = $this->userRepository->save($user);
