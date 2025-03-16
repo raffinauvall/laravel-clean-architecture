@@ -13,7 +13,7 @@ Route::get('/users', [UserController::class, 'showAllUser']);
 Route::get('/users/{id}', [UserController::class, 'showUserById']);
 
 // Update User by Id
-Route::patch('/users/{id}', [UserController::class, 'update']);
+Route::put('/users/{id}', [UserController::class, 'update']);
 
 // Delete User by Id
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
