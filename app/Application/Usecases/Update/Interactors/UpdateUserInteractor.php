@@ -23,7 +23,7 @@ class UpdateUserInteractor implements UpdateUserUsecase
         }
 
 
-        if (!isset($userData['username']) || !isset($userData['password'])) {
+        if (!isset($userData['username']) || !isset($userData['phone_number']) || !isset($userData['address'])) {
             throw new \InvalidArgumentException('Username dan password wajib diisi.');
         }
         $this->userRepository->update($userId, $userData);
