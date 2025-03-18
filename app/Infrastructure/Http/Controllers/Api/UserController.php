@@ -107,7 +107,7 @@ class UserController extends \App\Http\Controllers\Controller
         try {
             // Validasi permintaan
             $request->validate([
-                'username' => 'required|unique:users|max:255',
+                'username' => 'required|max:255',
                 'phone_number' => 'required',
                 'address' => 'required'
             ]);

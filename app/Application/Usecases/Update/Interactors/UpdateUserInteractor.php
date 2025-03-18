@@ -24,7 +24,7 @@ class UpdateUserInteractor implements UpdateUserUsecase
 
 
         if (!isset($userData['username']) || !isset($userData['phone_number']) || !isset($userData['address'])) {
-            throw new \InvalidArgumentException('Username dan password wajib diisi.');
+            throw new \InvalidArgumentException('All fields are required.');
         }
         $this->userRepository->update($userId, $userData);
 
